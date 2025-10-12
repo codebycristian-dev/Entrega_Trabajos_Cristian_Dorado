@@ -1,7 +1,7 @@
 {
     "version":            "1.1",
     "project_name":       "task",
-    "project_version":    "2043c72",
+    "project_version":    "ac09421-dirty",
     "project_path":       "C:/Users/USUARIO/OneDrive/Escritorio/RTOS/Entrega_Trabajos_Cristian_Dorado/Task/task",
     "idf_path":           "C:/Espressif/frameworks/esp-idf-v5.3.1",
     "build_dir":          "C:/Users/USUARIO/OneDrive/Escritorio/RTOS/Entrega_Trabajos_Cristian_Dorado/Task/task/build",
