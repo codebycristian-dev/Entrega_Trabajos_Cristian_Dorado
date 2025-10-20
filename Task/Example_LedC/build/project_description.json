@@ -1,7 +1,7 @@
 {
     "version":            "1.1",
     "project_name":       "Example_LedC",
-    "project_version":    "e9f8bdc",
+    "project_version":    "414ce31-dirty",
     "project_path":       "C:/esp/Entrega_Trabajos_Cristian_Dorado/Task/Example_LedC",
     "idf_path":           "C:/Espressif/frameworks/esp-idf-v5.3.1",
     "build_dir":          "C:/esp/Entrega_Trabajos_Cristian_Dorado/Task/Example_LedC/build",

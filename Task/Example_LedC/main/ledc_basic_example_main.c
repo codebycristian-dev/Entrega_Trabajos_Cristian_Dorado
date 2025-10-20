@@ -1,49 +1,46 @@
 #include <stdio.h>
-#include "driver/ledc.h"
-#include "esp_err.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include "driver/ledc.h"
+#include "driver/adc.h"
+#include "esp_log.h"
 
-#define LEDC_OUTPUT_IO 5 // GPIO del LED
-#define LEDC_CHANNEL LEDC_CHANNEL_0
-#define LEDC_TIMER LEDC_TIMER_0
-#define LEDC_MODE LEDC_LOW_SPEED_MODE
-#define LEDC_DUTY_RES LEDC_TIMER_13_BIT
-#define LEDC_FREQUENCY 1000   // 1 kHz es una buena frecuencia para fade
-#define LEDC_FADE_TIME_MS  100// Tiempo de transición (1 segundo)
+#define LED_PIN 18
+#define ADC_PIN ADC1_CHANNEL_6 // GPIO34
 
 void app_main(void)
 {
-    // --- Configuración del temporizador ---
+    // Config LEDC
     ledc_timer_config_t ledc_timer = {
-        .speed_mode = LEDC_MODE,
-        .duty_resolution = LEDC_DUTY_RES,
-        .timer_num = LEDC_TIMER,
-        .freq_hz = LEDC_FREQUENCY,
+        .speed_mode = LEDC_LOW_SPEED_MODE,
+        .timer_num = LEDC_TIMER_0,
+        .duty_resolution = LEDC_TIMER_13_BIT,
+        .freq_hz = 5000,
         .clk_cfg = LEDC_AUTO_CLK};
-    ESP_ERROR_CHECK(ledc_timer_config(&ledc_timer));
+    ledc_timer_config(&ledc_timer);
 
-    // --- Configuración del canal ---
     ledc_channel_config_t ledc_channel = {
-        .speed_mode = LEDC_MODE,
-        .channel = LEDC_CHANNEL,
-        .timer_sel = LEDC_TIMER,
+        .speed_mode = LEDC_LOW_SPEED_MODE,
+        .channel = LEDC_CHANNEL_0,
+        .timer_sel = LEDC_TIMER_0,
         .intr_type = LEDC_INTR_DISABLE,
-        .gpio_num = LEDC_OUTPUT_IO,
-        .duty = 0, // inicia apagado
+        .gpio_num = LED_PIN,
+        .duty = 0,
         .hpoint = 0};
-    ESP_ERROR_CHECK(ledc_channel_config(&ledc_channel));
+    ledc_channel_config(&ledc_channel);
 
-    // --- Habilitar la función de fade ---
-    ledc_fade_func_install(0);
+    // Config ADC
+    adc1_config_width(ADC_WIDTH_BIT_10);
+    adc1_config_channel_atten(ADC_PIN, ADC_ATTEN_DB_11);
 
     while (1)
     {
-        // Aumentar brillo (de 0 a máximo)
-        ledc_set_fade_time_and_start(LEDC_MODE, LEDC_CHANNEL, (1 << LEDC_DUTY_RES) - 1,
-                                     LEDC_FADE_TIME_MS, LEDC_FADE_WAIT_DONE);
-        // Bajar brillo (de máximo a 0)
-        ledc_set_fade_time_and_start(LEDC_MODE, LEDC_CHANNEL, 0,
-                                     LEDC_FADE_TIME_MS, LEDC_FADE_WAIT_DONE);
+        int adc_value = adc1_get_raw(ADC_PIN);
+        int duty = (adc_value * ((1 << 13) - 1)) / 1023;
+        ledc_set_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0, duty);
+        ledc_update_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0);
+
+        ESP_LOGI("ADC", "ADC: %d | Duty: %d", adc_value, duty);
+        vTaskDelay(pdMS_TO_TICKS(100));
     }
 }
