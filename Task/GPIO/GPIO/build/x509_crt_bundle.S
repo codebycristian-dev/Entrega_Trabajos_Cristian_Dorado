@@ -1,4 +1,4 @@
-/* * Data converted from C:/Users/USUARIO/OneDrive/Escritorio/RTOS/Entrega_Trabajos_Cristian_Dorado/Task/GPIO/GPIO/build/esp-idf/mbedtls/x509_crt_bundle
+/* * Data converted from C:/esp/Entrega_Trabajos_Cristian_Dorado/Task/GPIO/GPIO/build/esp-idf/mbedtls/x509_crt_bundle
  */
 .data
 #if !defined (__APPLE__) && !defined (__linux__)

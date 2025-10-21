@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/USUARIO/OneDrive/Escritorio/RTOS/Entrega_Trabajos_Cristian_Dorado/Task/GPIO/GPIO/main
+# Install script for directory: C:/esp/Entrega_Trabajos_Cristian_Dorado/Task/GPIO/GPIO/main
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

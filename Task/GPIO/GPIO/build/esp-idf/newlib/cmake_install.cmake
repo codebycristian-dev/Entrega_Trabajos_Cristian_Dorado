@@ -39,6 +39,6 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Users/USUARIO/OneDrive/Escritorio/RTOS/Entrega_Trabajos_Cristian_Dorado/Task/GPIO/GPIO/build/esp-idf/newlib/port/cmake_install.cmake")
+  include("C:/esp/Entrega_Trabajos_Cristian_Dorado/Task/GPIO/GPIO/build/esp-idf/newlib/port/cmake_install.cmake")
 endif()
 

@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/USUARIO/OneDrive/Escritorio/RTOS/Entrega_Trabajos_Cristian_Dorado/Task/GPIO/GPIO
+# Install script for directory: C:/esp/Entrega_Trabajos_Cristian_Dorado/Task/GPIO/GPIO
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Users/USUARIO/OneDrive/Escritorio/RTOS/Entrega_Trabajos_Cristian_Dorado/Task/GPIO/GPIO/build/esp-idf/cmake_install.cmake")
+  include("C:/esp/Entrega_Trabajos_Cristian_Dorado/Task/GPIO/GPIO/build/esp-idf/cmake_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/USUARIO/OneDrive/Escritorio/RTOS/Entrega_Trabajos_Cristian_Dorado/Task/GPIO/GPIO/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/esp/Entrega_Trabajos_Cristian_Dorado/Task/GPIO/GPIO/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
