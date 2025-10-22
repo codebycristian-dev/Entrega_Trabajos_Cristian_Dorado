@@ -1,2 +1,2 @@
-idf_component_register(SRCS "blink_example_main.c" "ledc.c"
+idf_component_register(SRCS "ADC.c" "ledc.c"
                        INCLUDE_DIRS ".")
