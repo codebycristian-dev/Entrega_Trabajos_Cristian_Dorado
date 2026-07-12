@@ -72,9 +72,9 @@ static void obtain_time(void)
 	tzset();
 	ESP_LOGI(TAG, "Initializing SNTP");
 	// Configurar el servidor SNTP. Aquí se utiliza "pool.ntp.org" como ejemplo. Puedes cambiarlo según tus necesidades.
-	sntp_setoperatingmode(SNTP_OPMODE_POLL);
-	sntp_setservername(0, "0.co.pool.ntp.org");
-	sntp_init();
+	esp_sntp_setoperatingmode(SNTP_OPMODE_POLL);
+	esp_sntp_setservername(0, "0.co.pool.ntp.org");
+	esp_sntp_init();
 
 	// Esperar a que se sincronice el tiempo con el servidor SNTP
 	time_t now = 0;
