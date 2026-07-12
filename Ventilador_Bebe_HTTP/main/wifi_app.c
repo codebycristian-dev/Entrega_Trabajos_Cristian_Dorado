@@ -46,6 +46,7 @@ esp_netif_t *esp_netif_sta = NULL;
 esp_netif_t *esp_netif_ap = NULL;
 
 bool time_was_synchronized;
+static bool sntp_initialized = false;
 
 extern uint8_t s_led_state;
 /**
@@ -70,11 +71,15 @@ static void obtain_time(void)
 {
 	setenv("TZ", "EST5EDT,M3.2.0/2,M11.1.0", 1);
 	tzset();
-	ESP_LOGI(TAG, "Initializing SNTP");
-	// Configurar el servidor SNTP. Aquí se utiliza "pool.ntp.org" como ejemplo. Puedes cambiarlo según tus necesidades.
-	esp_sntp_setoperatingmode(SNTP_OPMODE_POLL);
-	esp_sntp_setservername(0, "0.co.pool.ntp.org");
-	esp_sntp_init();
+	if (!sntp_initialized)
+	{
+		ESP_LOGI(TAG, "Initializing SNTP");
+		// Configurar el servidor SNTP. Aquí se utiliza "pool.ntp.org" como ejemplo. Puedes cambiarlo según tus necesidades.
+		esp_sntp_setoperatingmode(SNTP_OPMODE_POLL);
+		esp_sntp_setservername(0, "0.co.pool.ntp.org");
+		esp_sntp_init();
+		sntp_initialized = true;
+	}
 
 	// Esperar a que se sincronice el tiempo con el servidor SNTP
 	time_t now = 0;
