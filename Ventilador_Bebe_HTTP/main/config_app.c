@@ -2,6 +2,7 @@
 #include "nvs_flash.h"
 #include "nvs.h"
 #include "esp_log.h"
+#include <stdint.h>
 
 static const char *TAG = "config_app";
 static const char *NS = "fan"; // Namespace fan
@@ -70,7 +71,13 @@ void config_app_init(void)
     cfg.mode = mode;
 
     // --------- PWM MANUAL ---------
-    if (nvs_get_i32(h, "pwm_manual", &cfg.pwm_manual) != ESP_OK)
+    int32_t pwm_manual = 0;
+
+    if (nvs_get_i32(h, "pwm_manual", &pwm_manual) == ESP_OK)
+    {
+        cfg.pwm_manual = (int)pwm_manual;
+    }
+    else
     {
         cfg.pwm_manual = 0;
     }
