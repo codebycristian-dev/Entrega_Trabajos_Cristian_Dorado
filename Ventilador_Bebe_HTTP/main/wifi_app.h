@@ -74,14 +74,12 @@ typedef struct register_saved
 
 } register_saved_e;
 
-static void obtain_time(void);
 void connect_to_wifi(void);
 void init_obtain_time(void);
 bool get_state_time_was_synchronized(void);
 
 void save_wifi_credentials(const char *ssid, const char *password);
 void load_wifi_credentials(char *ssid, char *password);
-static void wifi_app_connect_sta(void);
 void check_sta_connection_state(void *pvParameters);
 /**
  * Sends a message to the queue

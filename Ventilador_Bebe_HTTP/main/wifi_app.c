@@ -21,6 +21,10 @@
 #include "wifi_app.h"
 #include "esp_sntp.h"
 
+/* Funciones privadas del módulo Wi-Fi. */
+static void obtain_time(void);
+static void wifi_app_connect_sta(void);
+
 // Tag used for ESP serial console messages
 static const char TAG[] = "wifi_app";
 
