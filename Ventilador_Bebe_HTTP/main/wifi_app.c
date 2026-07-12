@@ -210,7 +210,6 @@ void connect_to_wifi(void)
 		memset(wifi_config, 0x00, sizeof(wifi_config_t));
 		strncpy((char *)wifi_config->sta.ssid, ssid, sizeof(wifi_config->sta.ssid));
 		strncpy((char *)wifi_config->sta.password, password, sizeof(wifi_config->sta.password));
-		esp_wifi_set_config(ESP_IF_WIFI_STA, wifi_config);
 		wifi_app_connect_sta();
 
 		// Do some work
